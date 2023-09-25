@@ -110,7 +110,6 @@ local function destroyIceIllusionMobs()
 end
 
 -- Start the function in a separate thread
-spawn(destroyIceIllusionMobs)
 
 -- Continue with your existing script...
 -- ... (Your existing script)
@@ -210,7 +209,7 @@ function updateTarget()
     while getgenv().autofarm do
         if not currentTarget or (currentTarget and currentTarget:FindFirstChild("Humanoid") and currentTarget.Humanoid.Health <= 0) then
             wait()  
-
+spawn(destroyIceIllusionMobs)
             chooseNewTarget()
         end
 
