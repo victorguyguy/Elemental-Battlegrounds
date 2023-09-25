@@ -102,6 +102,10 @@ local function destroyIceIllusionMobs()
             workspace.Mobs["[Lv. 95] Ice Illusion"]:Destroy()
                   print("Destroyed 95 ")
         end
+        if workspace.Mobs:FindFirstChild("[Lv. 95] Ice Illusion") then
+            workspace.Mobs["[Lv. 85] Ice Illusion"]:Destroy()
+                  print("Destroyed 85 ")
+        end
         wait(1)  -- Adjust the wait time (in seconds) as needed to control the frequency of checks
     end
 end
