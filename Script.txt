@@ -1,5 +1,5 @@
 wait(5)
-repeat task.wait() until game:IsLoaded()
+
 local GUI = Instance.new("ScreenGui")
 local MainFrame = Instance.new("Frame")
 local TurnOnButton = Instance.new("TextButton")
