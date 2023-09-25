@@ -220,7 +220,6 @@ function updateTarget()
         if not currentTarget or (currentTarget and currentTarget:FindFirstChild("Humanoid") and currentTarget.Humanoid.Health <= 0) then
             wait()  
 
-destroyIceIllusionMobs()
             chooseNewTarget()
         end
 
