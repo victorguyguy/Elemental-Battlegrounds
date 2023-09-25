@@ -92,26 +92,28 @@ local swordArgs = {
 }
 
 -- Add the destroyIceIllusionMobs function here
+local RunService = game:GetService("RunService")
+local lastDestroyTime = 0
+local destroyInterval = 5  -- 5 seconds
+
 local function destroyIceIllusionMobs()
     while true do
-        if workspace.Mobs:FindFirstChild("[Lv. 75] Ice Illusion") then
-            workspace.Mobs["[Lv. 75] Ice Illusion"]:Destroy()
-            print("Destroyed 75 ")
+        local currentTime = tick()
+        if workspace.Mobs:FindFirstChild("[Lv. 85] Ice Illusion") then
+            local timeSinceLastDestroy = currentTime - lastDestroyTime
+            if timeSinceLastDestroy >= destroyInterval then
+                workspace.Mobs["[Lv. 85] Ice Illusion"]:Destroy()
+                lastDestroyTime = currentTime
+            end
         end
-        if workspace.Mobs:FindFirstChild("[Lv. 95] Ice Illusion") then
-            workspace.Mobs["[Lv. 95] Ice Illusion"]:Destroy()
-                  print("Destroyed 95 ")
-        end
-        if workspace.Mobs:FindFirstChild("[Lv. 95] Ice Illusion") then
-            workspace.Mobs["[Lv. 85] Ice Illusion"]:Destroy()
-                  print("Destroyed 85 ")
-        end
-        wait(1)  -- Adjust the wait time (in seconds) as needed to control the frequency of checks
+        wait()
     end
 end
 
--- Start the function in a separate thread
-spawn(destroyIceIllusionMobs)
+RunService.RenderStepped:Connect(destroyIceIllusionMobs)
+
+
+
 
 function createDungeon(name, difficulty, join, hardcore)
     CreateParty:InvokeServer(name, difficulty, join, not hardcore and "Normal")
