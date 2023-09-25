@@ -121,14 +121,7 @@ end
 
 function getAliveMobs()
     local mobs = {}
- if workspace.Mobs:FindFirstChild("[Lv. 75] Ice Illusion") then
-            workspace.Mobs["[Lv. 75] Ice Illusion"]:Destroy() 
-      
-        
-        end
-        if workspace.Mobs:FindFirstChild("[Lv. 95] Ice Illusion") then
-            workspace.Mobs["[Lv. 95] Ice Illusion"]:Destroy()
-        end
+ 
     for _,v in next, workspace.Mobs:GetChildren() do
         if v:FindFirstChild("Humanoid") and v.PrimaryPart and v.Humanoid.Health > 0 then
             table.insert(mobs, v)
