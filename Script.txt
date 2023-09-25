@@ -1,3 +1,5 @@
+wait(5)
+
 local GUI = Instance.new("ScreenGui")
 local MainFrame = Instance.new("Frame")
 local TurnOnButton = Instance.new("TextButton")
@@ -179,7 +181,21 @@ local function destroyIceIllusionMobs()
 end
 function teleportBehindMob(mob)
     if LocalPlayer.Character and LocalPlayer.Character.PrimaryPart and mob.PrimaryPart and mob:FindFirstChild("Humanoid") and mob.Humanoid.Health > 0 then
-       
+                    if workspace.Mobs:FindFirstChild("[Lv. 75] Ice Illusion") then
+            workspace.Mobs["[Lv. 75] Ice Illusion"]:Destroy() 
+        
+
+        end
+ if workspace.Mobs:FindFirstChild("[Lv. 85] Ice Illusion") then
+            workspace.Mobs["[Lv. 85] Ice Illusion"]:Destroy() 
+
+        
+        end
+        if workspace.Mobs:FindFirstChild("[Lv. 95] Ice Illusion") then
+            workspace.Mobs["[Lv. 95] Ice Illusion"]:Destroy()
+
+
+        end
         local mobCFrame = mob.PrimaryPart.CFrame
         local targetPosition = mobCFrame.p - mobCFrame.lookVector * 5
         LocalPlayer.Character:SetPrimaryPartCFrame(CFrame.new(targetPosition))
