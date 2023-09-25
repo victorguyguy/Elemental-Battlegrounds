@@ -91,24 +91,13 @@ local swordArgs = {
     }
 }
 
--- Add the destroyIceIllusionMobs function here
+
 local RunService = game:GetService("RunService")
 local lastDestroyTime = 0
-local destroyInterval = 5  -- 5 seconds
+local destroyInterval = 5  
 
-local function destroyIceIllusionMobs()
-    while true do
-        local currentTime = tick()
-        if workspace.Mobs:FindFirstChild("[Lv. 85] Ice Illusion") then
-            local timeSinceLastDestroy = currentTime - lastDestroyTime
-            if timeSinceLastDestroy >= destroyInterval then
-                workspace.Mobs["[Lv. 85] Ice Illusion"]:Destroy()
-                lastDestroyTime = currentTime
-            end
-        end
-        wait()
-    end
-end
+ 
+
 
 RunService.RenderStepped:Connect(destroyIceIllusionMobs)
 
@@ -125,12 +114,6 @@ function createDungeon(name, difficulty, join, hardcore)
     StartParty:InvokeServer(GetPartyFromPlayer:InvokeServer(LocalPlayer)['Data']['UUID'])
 end
 
--- Add the destroyIceIllusionMobs function here
-
--- Start the function in a separate thread
-
--- Continue with your existing script...
--- ... (Your existing script)
 
 function retry()
     VoteOn:InvokeServer("Retry")
@@ -182,15 +165,16 @@ function chooseNewTarget()
 end
 local function destroyIceIllusionMobs()
     while true do
-        if workspace.Mobs:FindFirstChild("[Lv. 75] Ice Illusion") then
-            workspace.Mobs["[Lv. 75] Ice Illusion"]:Destroy() 
-        wait(1)
-        
+       
+        local currentTime = tick()
+        if workspace.Mobs:FindFirstChild("[Lv. 85] Ice Illusion") then
+            local timeSinceLastDestroy = currentTime - lastDestroyTime
+            if timeSinceLastDestroy >= destroyInterval then
+                workspace.Mobs["[Lv. 85] Ice Illusion"]:Destroy()
+                lastDestroyTime = currentTime
+            end
         end
-        if workspace.Mobs:FindFirstChild("[Lv. 95] Ice Illusion") then
-            workspace.Mobs["[Lv. 95] Ice Illusion"]:Destroy()
-        end
-        wait(1)  -- Adjust the wait time (in seconds) as needed to control the frequency of checks
+        wait(1)  --  control the frequency of checks
     end
 end
 function teleportBehindMob(mob)
@@ -241,7 +225,17 @@ function updateTarget()
     while getgenv().autofarm do
         if not currentTarget or (currentTarget and currentTarget:FindFirstChild("Humanoid") and currentTarget.Humanoid.Health <= 0) then
             wait()  
-
+             if workspace.Mobs:FindFirstChild("[Lv. 75] Ice Illusion") then
+            workspace.Mobs["[Lv. 75] Ice Illusion"]:Destroy() 
+        
+        end
+ if workspace.Mobs:FindFirstChild("[Lv. 85] Ice Illusion") then
+            workspace.Mobs["[Lv. 85] Ice Illusion"]:Destroy() 
+        
+        end
+        if workspace.Mobs:FindFirstChild("[Lv. 95] Ice Illusion") then
+            workspace.Mobs["[Lv. 95] Ice Illusion"]:Destroy()
+        end
             chooseNewTarget()
         end
 
