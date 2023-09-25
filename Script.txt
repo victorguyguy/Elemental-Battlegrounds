@@ -30,7 +30,7 @@ TurnOffButton.Text = "Turn Off"
 TurnOffButton.TextColor3 = Color3.new(1, 1, 1)
 TurnOffButton.TextSize = 14
 
-local autofarmEnabled = false
+local autofarmEnabled = true
 
 TurnOnButton.MouseButton1Click:Connect(function()
     getgenv().autofarm = true
