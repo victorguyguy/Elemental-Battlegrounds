@@ -97,17 +97,6 @@ function createDungeon(name, difficulty, join, hardcore)
 end
 
 -- Add the destroyIceIllusionMobs function here
-local function destroyIceIllusionMobs()
-    while true do
-        if workspace.Mobs:FindFirstChild("[Lv. 75] Ice Illusion") then
-            workspace.Mobs["[Lv. 75] Ice Illusion"]:Destroy()
-        end
-        if workspace.Mobs:FindFirstChild("[Lv. 95] Ice Illusion") then
-            workspace.Mobs["[Lv. 95] Ice Illusion"]:Destroy()
-        end
-        wait(1)  -- Adjust the wait time (in seconds) as needed to control the frequency of checks
-    end
-end
 
 -- Start the function in a separate thread
 
@@ -132,6 +121,14 @@ end
 
 function getAliveMobs()
     local mobs = {}
+ if workspace.Mobs:FindFirstChild("[Lv. 75] Ice Illusion") then
+            workspace.Mobs["[Lv. 75] Ice Illusion"]:Destroy() 
+      
+        
+        end
+        if workspace.Mobs:FindFirstChild("[Lv. 95] Ice Illusion") then
+            workspace.Mobs["[Lv. 95] Ice Illusion"]:Destroy()
+        end
     for _,v in next, workspace.Mobs:GetChildren() do
         if v:FindFirstChild("Humanoid") and v.PrimaryPart and v.Humanoid.Health > 0 then
             table.insert(mobs, v)
@@ -149,6 +146,7 @@ function chooseNewTarget()
     end
     startDungeon()
     local mobs = getAliveMobs()
+
     for _, mob in ipairs(mobs) do
         if mob:FindFirstChild("Humanoid") then
             local mobCFrame = mob.PrimaryPart.CFrame
@@ -160,7 +158,19 @@ function chooseNewTarget()
     end
     currentTarget = nil
 end
-
+local function destroyIceIllusionMobs()
+    while true do
+        if workspace.Mobs:FindFirstChild("[Lv. 75] Ice Illusion") then
+            workspace.Mobs["[Lv. 75] Ice Illusion"]:Destroy() 
+        wait(1)
+        
+        end
+        if workspace.Mobs:FindFirstChild("[Lv. 95] Ice Illusion") then
+            workspace.Mobs["[Lv. 95] Ice Illusion"]:Destroy()
+        end
+        wait(1)  -- Adjust the wait time (in seconds) as needed to control the frequency of checks
+    end
+end
 function teleportBehindMob(mob)
     if LocalPlayer.Character and LocalPlayer.Character.PrimaryPart and mob.PrimaryPart and mob:FindFirstChild("Humanoid") and mob.Humanoid.Health > 0 then
        
@@ -209,7 +219,8 @@ function updateTarget()
     while getgenv().autofarm do
         if not currentTarget or (currentTarget and currentTarget:FindFirstChild("Humanoid") and currentTarget.Humanoid.Health <= 0) then
             wait()  
-spawn(destroyIceIllusionMobs)
+
+destroyIceIllusionMobs()
             chooseNewTarget()
         end
 
